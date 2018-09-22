@@ -167,7 +167,7 @@ async function install (context) {
     spinner.stop()
 
     // patch splash screen
-    async function patchSplashScreen () {
+    async function patchSplashScreen() {
       spinner.text = `▸ setting up splash screen`
       spinner.start()
       spinner.text = `▸ setting up splash screen: configuring`
@@ -182,7 +182,7 @@ async function install (context) {
       await system.run(`git apply ${patchPath}`, { stdio: 'ignore' })
       filesystem.remove(`${process.cwd()}/patches/splash-screen`)
     }
-    await patchSplashScreen()
+    // await patchSplashScreen()
     spinner.stop()
   } catch (e) {
     ignite.log(e)
