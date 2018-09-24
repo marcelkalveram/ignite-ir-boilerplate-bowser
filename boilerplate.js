@@ -197,6 +197,20 @@ async function install (context) {
       filesystem.remove(`${process.cwd()}/patches/splash-screen`)
     }
     await patchSplashScreen()
+
+    async function patchAndroidGradle() {
+      spinner.text = `▸ patching Android gradle config`
+      spinner.start()
+
+      // Grab the patches
+      const patchPath = `${process.cwd()}/patches/android/build.gradle.patch`
+      await system.run(`git apply ${patchPath}`, { stdio: 'ignore' })
+
+      // Cleanup
+      spinner.text = `▸ patching Android gradle config: cleaning`
+      filesystem.remove(`${process.cwd()}/patches/android`)
+    }
+    await patchAndroidGradle()
     spinner.stop()
   } catch (e) {
     ignite.log(e)

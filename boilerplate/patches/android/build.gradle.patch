@@ -1,0 +1,19 @@
+diff --git a/android/build.gradle b/android/build.gradle
+index 49569e4..3881f99 100644
+--- a/android/build.gradle
++++ b/android/build.gradle
+@@ -38,3 +38,14 @@ ext {
+     targetSdkVersion = 26
+     supportLibVersion = "26.1.0"
+ }
++
++subprojects {
++    afterEvaluate {project ->
++        if (project.hasProperty("android")) {
++            android {
++                compileSdkVersion 26
++                buildToolsVersion "26.0.2"
++            }
++        }
++    }
++}
